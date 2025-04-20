@@ -58,7 +58,6 @@ const HeaderController: React.FC = () => {
   return (
     <div>
       <IndexHeader handleClick={handleClick} handleScroll={handleScroll} isHidden={isButtonHidden} isClicked={isButtonClicked} />
-      <OpenMenu handleClick={handleClick} handleScroll={handleScroll} isHidden={isButtonHidden} isClicked={isButtonClicked} />
       <IndexHeaderMenu handleClick={handleClick} handleScroll={handleScroll} isHidden={isHeaderHidden} isClicked={isButtonClicked} />
     </div>
   );
@@ -99,11 +98,13 @@ const Photos = () => {
 
 const OpenMenu: React.FC<HeaderProps> = ({handleClick, isHidden, isClicked}: HeaderProps) => {
   return (
-    <button onClick={handleClick}>
-      <span className={`fixed right-6 top-1 text-6xl text-eggshell z-6 p-5 hover:text-white hover:cursor-pointer focus:text-white transition-transform duration-350 delay-100 ease-in-out ${
+    <button onClick={handleClick} className='text-eggshell'>
+      <svg xmlns="http://www.w3.org/2000/svg" stroke='currentColor' viewBox='0 0 40 26' className={`w-24 h-min text-eggshell z-6 hover:text-white hover:cursor-pointer focus:text-white transition-transform duration-350 delay-100 ease-in-out ${
         isHidden ? (isClicked ? 'invisible' : '' ) : (isClicked ? 'invisible' : 'translate-y-[-140px]')}`}>
-        &#9776;
-      </span>
+          <path d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 
+          0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z">
+          </path>
+      </svg>
     </button>
   )
 } 
@@ -123,11 +124,12 @@ const IndexHeaderMenu: React.FC<HeaderProps> = ({handleClick, isHidden}: HeaderP
   )
 }
 
-const IndexHeader: React.FC<HeaderProps> = ({isHidden, isClicked}: HeaderProps) => {
+const IndexHeader: React.FC<HeaderProps> = ({handleClick, handleScroll, isHidden, isClicked}: HeaderProps) => {
   return (
-    <div className={`fixed z-4 flex-auto justify-items-start justify-start align-middle w-screen min-h-32 bg-onyx text-eggshell transition-transform duration-350 delay-100 ease-in-out ${
+    <div className={`fixed z-4 flex justify-between items-center w-screen h-32 bg-onyx text-eggshell transition-transform duration-350 delay-100 ease-in-out ${
       isHidden ? (isClicked ? 'invisible' : '' ) : (isClicked ? 'invisible' : 'translate-y-[-140px]')}`} >
-        <a href='/photo-deploy/' className='flex text-4xl items-center justify-start z-5 h-32 pl-10 hover:text-white'>Tommy Gillis</a>
+        <a href='/photo-deploy/' className='text-4xl z-5 w-fit pl-10 hover:text-white'>Tommy Gillis</a>
+        <OpenMenu handleClick={handleClick} handleScroll={handleScroll} isHidden={isHidden} isClicked={isClicked}/>
     </div>
   )
 }
@@ -137,7 +139,7 @@ const IndexMain: React.FC = () => {
   
   return (
     <div className="grid gap-14 justify-items-center h-full max-w-fit auto-rows-min last:pb-20 min-h-screen">
-      <h1 className='w-screen text-6xl text-jet p-10 pt-45 grid justify-center'>
+      <h1 className='w-screen text-4xl sm:text-5xl text-onyx p-10 pt-45 grid justify-center'>
         Recent Photos
       </h1>
       {photos}
@@ -147,19 +149,19 @@ const IndexMain: React.FC = () => {
 
 const IndexFooter: React.FC = () => {
   return (
-    <div className='flex justify-between items-center h-20 bg-onyx align-center text-eggshell text-2xl'>
-      <p className='pl-4'>&copy; {new Date().getFullYear()} Tommy Gillis</p>
-      <a href='https://www.instagram.com/strato.stella?igsh=M3Bsc200Nm5nc2hw' className='pl-50'>
+    <div className='flex justify-around items-center w-screen h-20 bg-onyx align-center text-eggshell text-xl sm:text-2xl'>
+      <p className='pl-4 w-fit'>&copy; {new Date().getFullYear()} Tommy Gillis</p>
+      <a href='https://www.instagram.com/strato.stella?igsh=M3Bsc200Nm5nc2hw' className='pl-15 sm:pl-25 md:pl-55 lg:pl-110 xl:pl-170 hover:text-white'>
         <FontAwesomeIcon icon={faInstagram} size='xl' />
       </a>
-      <a href='mailto:humdjg@gmail.com' className='pr-8'>Contact Me</a>
+      <a href='mailto:humdjg@gmail.com' className='hover:text-white'>Contact Me</a>
     </div>
   )
 }
 
 function Index() {
   return (
-    <div className='bg-eggshell'>
+    <div className='bg-eggshell max-w-screen'>
       <header>
         <HeaderController />
       </header>
