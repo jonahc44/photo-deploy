@@ -65,7 +65,7 @@ const HeaderController: React.FC = () => {
 }
 
 const fetchPhotos = async () => {
-  const response = await fetch('http://localhost:5000/photos');
+  const response = await fetch('https://photo-website-d5g7.onrender.com/photos');
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
@@ -90,7 +90,7 @@ const Photos = () => {
     <div className="grid gap-14 justify-items-center h-full w-5/6 auto-rows-min last:pb-20">
       {photos.map((url: string, index: string) => (
         <a key={index} href={url} target="_blank" rel="noopener noreferrer">
-          <img src={url} alt={`Image ${index + 1}`} className="max-h-screen" />
+          <img src={url} alt={`Image ${index + 1}`} loading='lazy' className="max-h-screen" />
         </a>
       ))}
     </div>
@@ -117,8 +117,8 @@ const IndexHeaderMenu: React.FC<HeaderProps> = ({handleClick, isHidden}: HeaderP
           <path strokeLinecap="round" strokeLinejoin="round" d="M2 22 22 2M2 2l20 20" />
         </svg>
       </button>
-      <a href="/" className={`hover:text-white hover:cursor-pointer h-min col-start-2 col-2`}>Home</a>
-      <a href="/" className={`hover:text-white hover:cursor-pointer h-min col-start-2 col-2`}>About</a>
+      <a href="/photo-deploy/" className={`hover:text-white hover:cursor-pointer h-min col-start-2 col-2`}>Home</a>
+      <a href="/photo-deploy/about" className={`hover:text-white hover:cursor-pointer h-min col-start-2 col-2`}>About</a>
     </div>
   )
 }
@@ -136,7 +136,7 @@ const IndexMain: React.FC = () => {
   const photos = Photos();
   
   return (
-    <div className="grid gap-14 justify-items-center h-full max-w-fit auto-rows-min last:pb-20">
+    <div className="grid gap-14 justify-items-center h-full max-w-fit auto-rows-min last:pb-20 min-h-screen">
       <h1 className='w-screen text-6xl text-jet p-10 pt-45 grid justify-center'>
         Recent Photos
       </h1>
