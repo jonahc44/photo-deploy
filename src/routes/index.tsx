@@ -127,7 +127,7 @@ const IndexHeader: React.FC<HeaderProps> = ({isHidden, isClicked}: HeaderProps) 
   return (
     <div className={`fixed z-4 flex-auto justify-items-start justify-start align-middle w-screen min-h-32 bg-onyx text-eggshell transition-transform duration-350 delay-100 ease-in-out ${
       isHidden ? (isClicked ? 'invisible' : '' ) : (isClicked ? 'invisible' : 'translate-y-[-140px]')}`} >
-        <a href='/' className='flex text-4xl items-center justify-start z-5 h-32 pl-10 hover:text-white'>Tommy Gillis</a>
+        <a href='/photo-deploy/' className='flex text-4xl items-center justify-start z-5 h-32 pl-10 hover:text-white'>Tommy Gillis</a>
     </div>
   )
 }
