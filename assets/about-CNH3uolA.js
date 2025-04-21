@@ -1,1 +1,0 @@
-import{j as e}from"./index-Cb78O5MW.js";import{H as t}from"./Header-C8ueBWUg.js";const r=function(){return e.jsxs("div",{className:"bg-eggshell max-w-screen h-screen",children:[e.jsx("header",{children:e.jsx(t,{})}),e.jsx("main",{className:"text-5xl text-onyx pt-50",children:"About"})]})};export{r as component};
