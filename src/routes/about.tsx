@@ -9,7 +9,7 @@ export const Route = createFileRoute('/about')({
 
 function About() {
     return (
-      <div className='bg-eggshell max-w-screen h-screen'>
+      <div className='bg-eggshell max-w-screen h-full'>
         <header>
           <HeaderController />
         </header>

@@ -1,12 +1,15 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { RouterProvider, createHashHistory, createRouter } from '@tanstack/react-router'
+import { NotFound } from './NotFound.tsx'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen.ts'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
+
+const hashHistory = createHashHistory();
 
 // Create a new router instance
 const router = createRouter({
@@ -16,7 +19,9 @@ const router = createRouter({
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
-  basepath: '/photo-deploy'
+  basepath: '/photo-deploy',
+  defaultNotFoundComponent: NotFound,
+  history: hashHistory
 })
 
 // Register the router instance for type safety

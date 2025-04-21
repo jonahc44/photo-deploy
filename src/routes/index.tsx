@@ -63,7 +63,7 @@ const IndexFooter: React.FC = () => {
   return (
     <div className='flex justify-around items-center w-screen h-20 bg-onyx align-center text-eggshell text-xl sm:text-2xl'>
       <p className='pl-4 w-fit'>&copy; {new Date().getFullYear()} Tommy Gillis</p>
-      <a href='https://www.instagram.com/strato.stella?igsh=M3Bsc200Nm5nc2hw' className='pl-10 sm:pl-25 md:pl-55 lg:pl-110 xl:pl-170 hover:text-white' aria-label="Visit my Instagram page">
+      <a href='https://www.instagram.com/strato.stella?igsh=M3Bsc200Nm5nc2hw' className='pl-10 sm:pl-25 md:pl-55 lg:pl-110 xl:pl-170 hover:text-white' target='_blank' aria-label="Visit my Instagram page">
         <FontAwesomeIcon icon={faInstagram} size='xl' />
       </a>
       <a href='mailto:humdjg@gmail.com' className='hover:text-white' aria-label='Email me'>Contact Me</a>

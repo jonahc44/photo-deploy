@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './global.css'
+import { Link } from '@tanstack/react-router';
 
 interface HeaderProps {
     handleClick: () => void;
@@ -69,8 +70,8 @@ const HeaderMenu: React.FC<HeaderProps> = ({handleClick, isHidden}: HeaderProps)
           <path strokeLinecap="round" strokeLinejoin="round" d="M2 22 22 2M2 2l20 20" />
         </svg>
       </button>
-      <a href="/photo-deploy/" className={`hover:text-white hover:cursor-pointer focus:text-white h-min col-start-2 col-2`} tabIndex={isHidden ? 0 : -1} aria-label='Go to home page'>Home</a>
-      <a href="/photo-deploy/about" className={`hover:text-white hover:cursor-pointer focus:text-white h-min col-start-2 col-2`} tabIndex={isHidden ? 0 : -1} aria-label='Go to about page'>About</a>
+      <Link to='/' className={`hover:text-white hover:cursor-pointer focus:text-white h-min col-start-2 col-2`} tabIndex={isHidden ? 0 : -1} aria-label='Go to home page'>Home</Link>
+      <Link to="/about" className={`hover:text-white hover:cursor-pointer focus:text-white h-min col-start-2 col-2`} tabIndex={isHidden ? 0 : -1} aria-label='Go to about page'>About</Link>
     </div>
   )
 }
@@ -80,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({handleClick, handleScroll, isHidden, isC
     <div className={`fixed z-4 flex justify-between items-center w-screen h-32 bg-onyx text-eggshell transition-transform duration-350 delay-100 ease-in-out motion-reduce:transition-none ${
       isHidden ? (isClicked ? 'invisible' : '' ) : (isClicked ? 'invisible' : 'translate-y-[-140px]')}`} >
         <SkipToMain />
-        <a href='/photo-deploy/' className='text-4xl z-5 w-fit pl-10 hover:text-white focus:text-white' tabIndex={isHidden ? 0 : -1} aria-label='Go to home page'>Tommy Gillis</a>
+        <Link to ='/' className='text-4xl z-5 w-fit pl-10 hover:text-white focus:text-white' tabIndex={isHidden ? 0 : -1} aria-label='Go to home page'>Tommy Gillis</Link>
         <OpenMenu handleClick={handleClick} handleScroll={handleScroll} isHidden={isHidden} isClicked={isClicked}/>
     </div>
   )
