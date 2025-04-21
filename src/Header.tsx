@@ -78,7 +78,7 @@ const HeaderMenu: React.FC<HeaderProps> = ({handleClick, isHidden}: HeaderProps)
 
 const Header: React.FC<HeaderProps> = ({handleClick, handleScroll, isHidden, isClicked}: HeaderProps) => {
   return (
-    <div className={`fixed z-4 flex justify-between items-center w-screen h-32 bg-onyx text-eggshell transition-transform duration-350 delay-100 ease-in-out motion-reduce:transition-none ${
+    <div className={`fixed z-4 flex flex-row justify-between items-center w-screen h-32 bg-onyx text-eggshell transition-transform duration-350 delay-100 ease-in-out motion-reduce:transition-none ${
       isHidden ? (isClicked ? 'invisible' : '' ) : (isClicked ? 'invisible' : 'translate-y-[-140px]')}`} >
         <SkipToMain />
         <Link to ='/' className='text-4xl z-5 w-fit pl-10 hover:text-white focus:text-white' tabIndex={isHidden ? 0 : -1} aria-label='Go to home page'>Tommy Gillis</Link>

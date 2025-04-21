@@ -1,17 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query';
 import React from 'react'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Footer } from '@/Footer';
 import { HeaderController } from '@/Header';
 import '../global.css'
 
 export const Route = createFileRoute('/')({
   component: Index,
 })
-
-library.add(faInstagram);
 
 const fetchPhotos = async () => {
   const response = await fetch('https://photo-website-d5g7.onrender.com/photos');
@@ -59,18 +55,6 @@ const IndexMain: React.FC = () => {
   )
 }
 
-const IndexFooter: React.FC = () => {
-  return (
-    <div className='flex justify-around items-center w-screen h-20 bg-onyx align-center text-eggshell text-xl sm:text-2xl'>
-      <p className='pl-4 w-fit'>&copy; {new Date().getFullYear()} Tommy Gillis</p>
-      <a href='https://www.instagram.com/strato.stella?igsh=M3Bsc200Nm5nc2hw' className='pl-10 sm:pl-25 md:pl-55 lg:pl-110 xl:pl-170 hover:text-white' target='_blank' aria-label="Visit my Instagram page">
-        <FontAwesomeIcon icon={faInstagram} size='xl' />
-      </a>
-      <a href='mailto:humdjg@gmail.com' className='hover:text-white' aria-label='Email me'>Contact Me</a>
-    </div>
-  )
-}
-
 function Index() {
   return (
     <div className='bg-eggshell max-w-screen'>
@@ -81,7 +65,7 @@ function Index() {
         <IndexMain />
       </main>
       <footer>
-        <IndexFooter />
+        <Footer />
       </footer>
     </div>
   )
