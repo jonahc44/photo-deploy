@@ -1,4 +1,3 @@
-import { HeaderController } from '@/Header'
 import { Footer } from '@/Footer'
 import { Link } from '@tanstack/react-router';
 
