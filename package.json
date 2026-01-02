@@ -27,6 +27,7 @@
     "@types/tailwindcss": "^3.0.11",
     "dotenv": "^16.5.0",
     "fs": "^0.0.1-security",
+    "pragmatic-drag-and-drop": "^0.0.1-security",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-native-fs": "^2.20.0"

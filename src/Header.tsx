@@ -71,6 +71,7 @@ const HeaderMenu: React.FC<HeaderProps> = ({handleClick, isHidden}: HeaderProps)
         </svg>
       </button>
       <Link to='/' className={`hover:text-white hover:cursor-pointer focus:text-white h-min col-start-2 col-2`} tabIndex={isHidden ? 0 : -1} aria-label='Go to home page'>Home</Link>
+      <Link to="/collections" className={`hover:text-white hover:cursor-pointer focus:text-white h-min col-start-2 col-2`} tabIndex={isHidden ? 0 : -1} aria-label='Go to collections page'>Collections</Link>
       <Link to="/about" className={`hover:text-white hover:cursor-pointer focus:text-white h-min col-start-2 col-2`} tabIndex={isHidden ? 0 : -1} aria-label='Go to about page'>About</Link>
     </div>
   )
@@ -81,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({handleClick, handleScroll, isHidden, isC
     <div className={`fixed z-4 flex flex-row justify-between items-center w-screen h-32 bg-onyx text-eggshell transition-transform duration-350 delay-100 ease-in-out motion-reduce:transition-none ${
       isHidden ? (isClicked ? 'invisible' : '' ) : (isClicked ? 'invisible' : 'translate-y-[-140px]')}`} >
         <SkipToMain />
-        <Link to ='/' className='text-4xl z-5 w-fit pl-10 hover:text-white focus:text-white' tabIndex={isHidden ? 0 : -1} aria-label='Go to home page'>Tommy Gillis</Link>
+        <Link to ='/' className='text-4xl font-semibold z-5 w-fit pl-10 hover:text-white focus:text-white' tabIndex={isHidden ? 0 : -1} aria-label='Go to home page'>Tommy Gillis</Link>
         <OpenMenu handleClick={handleClick} handleScroll={handleScroll} isHidden={isHidden} isClicked={isClicked}/>
     </div>
   )

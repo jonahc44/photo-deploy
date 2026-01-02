@@ -7,11 +7,13 @@ import '../global.css'
 
 type Photo = {
   url: string,
+  thumbnail: string,
   index: number
 }
 
-const fetchPhotos = async () => {
-  const response = await fetch(`https://photo-website-backend--photo-website-f20b9.us-central1.hosted.app/photos/homepage`);
+const fetchPhotos = async (collectionId: string) => {
+  console.log(collectionId);
+  const response = await fetch(`https://photo-website-backend--photo-website-f20b9.us-central1.hosted.app/photos/${collectionId}`);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
@@ -19,15 +21,19 @@ const fetchPhotos = async () => {
   return response.json();
 }
 
-export const Route = createFileRoute('/')({
-  component: Index,
-  loader: fetchPhotos
+export const Route = createFileRoute('/collections/$collectionId')({
+  component: Collection,
+  loader: ({ params }) => {
+    return fetch(params.collectionId)
+  }
 })
 
 const Photos = () => {
+  const { collectionId } = Route.useParams();
   const { status, data: photos, error } = useQuery({
-    queryKey: ['photos'],
-    queryFn: fetchPhotos,
+    queryKey: [collectionId],
+    queryFn: () => fetchPhotos(collectionId),
+    enabled: !!collectionId
   });
 
   if (status === 'pending') {
@@ -51,27 +57,28 @@ const Photos = () => {
   );
 }
 
-const IndexMain: React.FC = () => {
+const CollectionMain: React.FC = () => {
   const photos = Photos();
+  const { collectionId } = Route.useParams();
   
   return (
     <div className="grid gap-14 place-items-center h-full max-w-fit auto-rows-min last:pb-20 min-h-screen">
       <h1 className='w-screen text-4xl font-semibold sm:text-5xl text-onyx p-10 pt-45 grid place-content-center'>
-        Recent Photos
+        {collectionId}
       </h1>
       {photos}
     </div>
   )
 }
 
-function Index() {
+function Collection() {
   return (
     <div className='bg-eggshell max-w-screen'>
       <header>
         <HeaderController />
       </header>
       <main id='main'>
-        <IndexMain />
+        <CollectionMain />
       </main>
       <footer>
         <Footer />

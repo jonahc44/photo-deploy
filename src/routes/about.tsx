@@ -15,7 +15,7 @@ function About() {
           <HeaderController />
         </header>
         <main className='text-3xl text-onyx pt-45 flex flex-col flex-grow items-center'>
-          <h1 className='text-7xl pb-10'>About</h1>
+          <h1 className='text-7xl font-semibold pb-10'>About</h1>
           <p className='p-12'>Tommy is a photographer based out of Chicago, IL.</p>
         </main>
         <footer>
