@@ -15,7 +15,7 @@ interface Collection {
 }
 
 const fetchCollections = async () => {
-  const response = await fetch(`${apiUrl}get-collections`);
+  const response = await fetch(`${apiUrl}/get-collections`);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
