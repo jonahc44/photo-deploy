@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react'
 import { Footer } from '@/Footer';
 import { HeaderController } from '@/Header';
+import { apiUrl } from '@/config';
 import '../global.css'
 
 type Photo = {
@@ -11,7 +12,7 @@ type Photo = {
 }
 
 const fetchPhotos = async () => {
-  const response = await fetch(`https://photo-website-backend--photo-website-f20b9.us-central1.hosted.app/photos/homepage`);
+  const response = await fetch(`${apiUrl}/photos/homepage`);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }

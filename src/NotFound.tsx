@@ -10,6 +10,7 @@ export function NotFound() {
         <h2 className='p-20 pb-10 text-5xl'>Go back to:</h2>
         <div className='flex flex-row text-5xl pb-10 justify-center gap-30'>
           <Link to='/' className={`hover:text-gray-400 hover:cursor-pointer focus:text-gray-400 h-min col-start-2 col-2`} aria-label='Go to home page'>Home</Link>
+          <Link to='/collections' className={`hover:text-gray-400 hover:cursor-pointer focus:text-gray-400 h-min col-start-2 col-2`} aria-label='Go to collections page'>Collections</Link>
           <Link to="/about" className={`hover:text-gray-400 hover:cursor-pointer focus:text-gray-400 h-min col-start-2 col-2`} aria-label='Go to about page'>About</Link>
         </div>
       </main>

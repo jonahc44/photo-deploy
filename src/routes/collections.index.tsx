@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query';
 import { Footer } from '@/Footer';
 import { HeaderController } from '@/Header';
+import { apiUrl } from '@/config';
 import '../global.css'
 
 interface Collection {
@@ -14,7 +15,7 @@ interface Collection {
 }
 
 const fetchCollections = async () => {
-  const response = await fetch('https://photo-website-backend--photo-website-f20b9.us-central1.hosted.app/get-collections');
+  const response = await fetch(`${apiUrl}get-collections`);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
