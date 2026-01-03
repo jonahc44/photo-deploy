@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react'
 import { Footer } from '@/Footer';
 import { HeaderController } from '@/Header';
-import { apiUrl } from '@/config';
+import { fetchPhotos } from '@/firebase';
 import '../global.css'
 
 type Photo = {
@@ -11,24 +11,24 @@ type Photo = {
   index: number
 }
 
-const fetchPhotos = async () => {
-  const response = await fetch(`${apiUrl}/photos/homepage`);
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
+// const fetchPhotos = async () => {
+//   const response = await fetch(`${apiUrl}/photos/homepage`);
+//   if (!response.ok) {
+//     throw new Error('Network response was not ok');
+//   }
   
-  return response.json();
-}
+//   return response.json();
+// }
 
 export const Route = createFileRoute('/')({
   component: Index,
-  loader: fetchPhotos
+  // loader: fetchPhotos
 })
 
 const Photos = () => {
-  const { status, data: photos, error } = useQuery({
-    queryKey: ['photos'],
-    queryFn: fetchPhotos,
+  const { status, data: photos = [], error } = useQuery({
+    queryKey: ['photos', 'homepage'],
+    queryFn: () => fetchPhotos('homepage'),
   });
 
   if (status === 'pending') {
@@ -53,14 +53,12 @@ const Photos = () => {
 }
 
 const IndexMain: React.FC = () => {
-  const photos = Photos();
-  
   return (
     <div className="grid gap-14 place-items-center h-full max-w-fit auto-rows-min last:pb-20 min-h-screen">
       <h1 className='w-screen text-4xl font-semibold sm:text-5xl text-onyx p-10 pt-45 grid place-content-center'>
         Recent Photos
       </h1>
-      {photos}
+      <Photos />
     </div>
   )
 }

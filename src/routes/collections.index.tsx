@@ -2,6 +2,8 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query';
 import { Footer } from '@/Footer';
 import { HeaderController } from '@/Header';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/firebase';
 import { apiUrl } from '@/config';
 import '../global.css'
 
@@ -15,20 +17,40 @@ interface Collection {
 }
 
 const fetchCollections = async () => {
-  const response = await fetch(`${apiUrl}/get-collections`);
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
+  // const response = await fetch(`${apiUrl}/get-collections`);
+  // if (!response.ok) {
+  //   throw new Error('Network response was not ok');
+  // }
   
-  const resJson = await response.json();
-  delete resJson.homepage;
-  return Object.entries(resJson).map(([key, value]: [string, any]) => (({
-    name: key,
-    album: value.album,
-    selected: value.selected,
-    thumbnail: value.thumbnail,
-    thumbnailUrl: value.thumbnailUrl
-  }) as Collection));
+  // const resJson = await response.json();
+  // delete resJson.homepage;
+  // return Object.entries(resJson).map(([key, value]: [string, any]) => (({
+  //   name: key,
+  //   album: value.album,
+  //   selected: value.selected,
+  //   thumbnail: value.thumbnail,
+  //   thumbnailUrl: value.thumbnailUrl
+  // }) as Collection));
+
+  try {
+      const collRef = doc(db, 'photo_metadata', 'collections');
+      const collSnapshot = await getDoc(collRef);
+  
+      if (collSnapshot.exists()) {
+        const colls = collSnapshot.data();
+        return Object.entries(colls).map(([key, value]: [string, any]) => (({
+          name: key,
+          album: value.album,
+          selected: value.selected,
+          thumbnail: value.thumbnail,
+          thumbnailUrl: value.thumbnailUrl
+        }) as Collection));
+      }
+      return [];
+    } catch (error) {
+      console.error("Error fetching photos:", error);
+      return [];
+    }
 }
 
 export const Route = createFileRoute('/collections/')({

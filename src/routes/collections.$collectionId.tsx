@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react'
 import { Footer } from '@/Footer';
 import { HeaderController } from '@/Header';
-import { apiUrl } from '@/config';
+import { fetchPhotos } from '@/firebase';
 import '../global.css'
 
 type Photo = {
@@ -12,15 +12,15 @@ type Photo = {
   index: number
 }
 
-const fetchPhotos = async (collectionId: string) => {
-  console.log(collectionId);
-  const response = await fetch(`${apiUrl}/photos/${collectionId}`);
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
+// const fetchPhotos = async (collectionId: string) => {
+//   console.log(collectionId);
+//   const response = await fetch(`${apiUrl}/photos/${collectionId}`);
+//   if (!response.ok) {
+//     throw new Error('Network response was not ok');
+//   }
   
-  return response.json();
-}
+//   return response.json();
+// }
 
 export const Route = createFileRoute('/collections/$collectionId')({
   component: Collection,
